@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/fuzes/Projects/outsourcing/AurumServer/obj/Debug/net8.0/scopedcss/projectbundle/AurumServer.bundle.scp.css",
+      "PackagePath": "staticwebassets/AurumServer.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/fuzes/Projects/outsourcing/AurumServer/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/Users/fuzes/Projects/outsourcing/AurumServer/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/fuzes/Projects/outsourcing/AurumServer/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/fuzes/Projects/outsourcing/AurumServer/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.AurumServer.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.AurumServer.props",
+      "PackagePath": "build\\AurumServer.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.AurumServer.props",
+      "PackagePath": "buildMultiTargeting\\AurumServer.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.AurumServer.props",
+      "PackagePath": "buildTransitive\\AurumServer.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,69 @@
+@page "/vote/{id:int}"
+@rendermode InteractiveServer
+@using AurumServer.Models
+
+<h3>Vote Detail</h3>
+
+@if (vote == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @if (vote.IsVoted) {
+        <h4>투표가 완료되었습니다. 결과를 확인하세요.</h4>
+    } else {
+        <h4>원하는 항목에 투표하세요</h4>
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>투표 항목</th>
+                <th>현재 득표 수</th>
+                <th>투표하기</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in vote.Items)
+            {
+                  <tr>
+                    <td>@item.Name</td>
+                    <td>@item.VotedCount</td>
+                    <td>
+                        @if (vote.IsVoted) {
+                            <span>@($"{item.VotedCount}표 ({GetPercentage(item.VotedCount, vote.TotalVotedCount)}%)")</span>
+                        } else {
+                            <button @onclick="() => TakeVote(vote.Id, item.Id)" class="btn btn-primary">투표하기</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    [Parameter]
+    required public int Id { get; set; }
+
+    public Vote? vote { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        vote = await VoteService.GetById(Id);
+    }
+
+    private async Task TakeVote(int voteId, int itemId)
+    {
+        vote = await VoteService.TakeVote(voteId, itemId);
+    }
+
+    [Inject]
+    private AurumServer.Services.VoteService VoteService { get; set; } = null!;
+
+    public int GetPercentage(int itemVotedCount, int totalVotedCount){
+        if (totalVotedCount == 0) return 0;
+        return (int)((double)itemVotedCount / totalVotedCount * 100);
+    }
+}

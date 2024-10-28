@@ -1,0 +1,53 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject AurumServer.Services.VoteService VoteService
+@inject NavigationManager Navigation
+@attribute [StreamRendering]
+
+@using AurumServer.Models
+
+<PageTitle>Home</PageTitle>
+
+<h1>투표 시스템</h1>
+
+@if (votes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="4">투표명</th>
+                <th>작성자</th>
+                <th>참여자 수</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vote in votes)
+            {
+                  <tr>
+                    <td colspan="4" @onclick="() => NavigateToDetail(vote.Id)" style="cursor: pointer;">@vote.Title</td>
+                    <td>@vote.WriterName</td>
+                    <td>@vote.TotalVotedCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Vote>? votes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        votes = await VoteService.GetAll();
+    }
+
+
+    private void NavigateToDetail(int id)
+    {
+        Navigation.NavigateTo($"/vote/{id}");
+    }
+}
